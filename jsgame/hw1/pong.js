@@ -11,17 +11,6 @@ class Frame{
         this.imageData = imageData;
         this.pixels = this.imageData.data;
     }
-    
-    setPixel(x, y, color) {
-        const index = ( y * 640 + x ) * 4;
-
-        if ( index < this.pixels.length && index >= 0) {
-            this.pixels[index] = color.r;
-            this.pixels[index+1] = color.g;
-            this.pixels[index+2] = color.b;
-            this.pixels[index+3] = color.a;
-        }
-    }
 }
 class Pong {
     constructor(canvas, width, height) {
@@ -50,7 +39,7 @@ class Pong {
         window.requestAnimationFrame(this.loop);
     }
     draw() {
-        const rectangle = new Rectangle(40, 180, 50, 50,  new Color(2,0,0))
+        const rectangle = new Rectangle(40, 180, 50, 50,  new Color(0,0,0))
         const circle = new Circle (200,200,50, new Color(0,0,0))
         
         let imageData = this.ctx.createImageData(this.canvas.width, this.canvas.height);
@@ -81,7 +70,8 @@ class Rectangle {
     
     }
     draw() {
-          
+          this.ctx.fillStyle = `rgb(${this.color.r},${this.color.g},${this.color.b})
+
           this.ctx.fillRect(this.x, this.y, this.width, this.height, this.color);
         }
 }
